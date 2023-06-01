@@ -39,7 +39,7 @@ export class LogtoClient extends BaseClient {
     }
 }
 
-export const LogtoAuthHandler = (appId: string, endpoint: string, scopes?: string[]): Handle => {
+export const LogtoAuthHandler = (appId: string, endpoint: string, scopes?: string[], resources?: string[]): Handle => {
     return async function ({ event, resolve }) {
         const client = new LogtoClient(
             {
@@ -47,6 +47,7 @@ export const LogtoAuthHandler = (appId: string, endpoint: string, scopes?: strin
                 endpoint: endpoint,
                 fetch: event.fetch,
                 scopes: scopes,
+                resources: resources
             },
             new CookieStore(appId, event.cookies)
         );
