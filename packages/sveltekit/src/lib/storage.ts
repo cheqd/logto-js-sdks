@@ -1,4 +1,5 @@
-import type { Storage, StorageKey } from '@logto/client';
+import { PersistKey } from '@logto/client';
+import type { Storage } from '@logto/client';
 import type { Nullable } from '@silverhand/essentials';
 import type { Cookies } from '@sveltejs/kit';
 import type { CookieSerializeOptions } from 'cookie';
@@ -11,7 +12,7 @@ const defaultCookieOptions: CookieSerializeOptions = {
   sameSite: 'lax',
 };
 
-export class CookieStore implements Storage {
+export class CookieStore implements Storage<PersistKey> {
   private readonly storageKey: string;
   private readonly cookies: Cookies;
   private readonly cookieOptions: CookieSerializeOptions;
@@ -22,8 +23,8 @@ export class CookieStore implements Storage {
     this.cookieOptions = cookieOptions ?? defaultCookieOptions;
   }
 
-  async getItem(key: StorageKey): Promise<Nullable<string>> {
-    if (key === 'signInSession') {
+  async getItem(key: PersistKey): Promise<Nullable<string>> {
+    if (key === PersistKey.SignInSession) {
       const cookie = this.cookies.get(this.storageKey);
       if (cookie) {
         return cookie;
@@ -40,20 +41,21 @@ export class CookieStore implements Storage {
     return null;
   }
 
-  async setItem(key: StorageKey, value: string): Promise<void> {
-    if (key === 'signInSession') {
+  async setItem(key: PersistKey, value: string): Promise<void> {
+    if (key === PersistKey.SignInSession) {
       this.cookies.set(this.storageKey, value, this.cookieOptions);
       return;
     }
+
     this.cookies.set(`${this.storageKey}:${key}`, value, this.cookieOptions);
   }
 
-  async removeItem(key: StorageKey): Promise<void> {
-    if (key === 'signInSession') {
-      this.cookies.delete(this.storageKey);
+  async removeItem(key: PersistKey): Promise<void> {
+    if (key === PersistKey.SignInSession) {
+      this.cookies.delete(this.storageKey, this.cookieOptions);
 
       return;
     }
-    this.cookies.delete(`${this.storageKey}:${key}`);
+    this.cookies.delete(`${this.storageKey}:${key}`, this.cookieOptions);
   }
 }

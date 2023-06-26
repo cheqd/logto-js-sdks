@@ -11,58 +11,57 @@ export type { LogtoConfig, LogtoClientErrorCode, UserInfoResponse } from '@logto
 export { CookieStore } from './storage.js';
 
 export {
-  LogtoError,
-  OidcError,
-  Prompt,
-  LogtoRequestError,
-  LogtoClientError,
-  ReservedScope,
-  UserScope,
+    LogtoError,
+    OidcError,
+    Prompt,
+    LogtoRequestError,
+    LogtoClientError,
+    ReservedScope,
+    UserScope,
 } from '@logto/client';
 
 const navigate = (url: string) => {
-  // eslint-disable-next-line @typescript-eslint/no-throw-literal
-  throw redirect(307, url);
+    throw redirect(307, url);
 };
 
 export type LogtoSvelteConfig = LogtoConfig & {
-  fetch: typeof fetch;
+    fetch: typeof fetch;
 };
 
 export class LogtoClient extends BaseClient {
-  constructor(config: LogtoSvelteConfig, cookieStore: CookieStore) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const requester = createRequester(config.fetch);
-    super(config, {
-      requester,
-      navigate,
-      storage: cookieStore,
-      generateCodeChallenge,
-      generateCodeVerifier,
-      generateState,
-    });
-  }
+    constructor(config: LogtoSvelteConfig, cookieStore: CookieStore) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const requester = createRequester(config.fetch);
+        super(config, {
+            requester,
+            navigate,
+            storage: cookieStore,
+            generateCodeChallenge,
+            generateCodeVerifier,
+            generateState,
+        });
+    }
 }
 
 export const LogtoAuthHandler = (
-  appId: string,
-  endpoint: string,
-  scopes?: string[],
-  resources?: string[]
+    appId: string,
+    endpoint: string,
+    scopes?: string[],
+    resources?: string[]
 ): Handle => {
-  return async function ({ event, resolve }) {
-    const client = new LogtoClient(
-      {
-        appId,
-        endpoint,
-        fetch: event.fetch,
-        scopes,
-        resources,
-      },
-      new CookieStore(appId, event.cookies)
-    );
-    event.locals.logto = client;
+    return async function ({ event, resolve }) {
+        const client = new LogtoClient(
+            {
+                appId,
+                endpoint,
+                fetch: event.fetch,
+                scopes,
+                resources,
+            },
+            new CookieStore(appId, event.cookies)
+        );
+        event.locals.logto = client;
 
-    return resolve(event);
-  };
+        return resolve(event);
+    };
 };
