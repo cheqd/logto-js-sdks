@@ -7,6 +7,7 @@ import { generateCodeChallenge, generateCodeVerifier, generateState } from './ge
 import { CookieStore } from './storage.js';
 
 export type { LogtoConfig, LogtoClientErrorCode, UserInfoResponse } from '@logto/client';
+export { generateCodeVerifier, generateCodeChallenge, generateState };
 
 export { CookieStore } from './storage.js';
 
@@ -41,6 +42,18 @@ export class LogtoClient extends BaseClient {
             generateState,
         });
     }
+
+    generateCodeChallenge = async (codeVerifier: string) => {
+        return await generateCodeChallenge(codeVerifier);
+    };
+
+    generateCodeVerifier = () => {
+        return generateCodeVerifier();
+    };
+
+    generateState = () => {
+        return generateState();
+    };
 }
 
 export const LogtoAuthHandler = (
