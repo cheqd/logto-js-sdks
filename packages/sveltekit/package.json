@@ -1,6 +1,6 @@
 {
     "name": "@cntr/sveltekit",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "license": "MIT",
     "scripts": {
         "dev": "vite dev",
@@ -30,35 +30,35 @@
         "dist"
     ],
     "peerDependencies": {
-        "svelte": "^3.54.0"
+        "svelte": "^4.2.1"
     },
     "devDependencies": {
-        "@playwright/test": "^1.35.1",
+        "@playwright/test": "^1.38.1",
         "@sveltejs/adapter-auto": "^2.1.0",
-        "@sveltejs/kit": "^1.20.4",
-        "@sveltejs/package": "^2.0.2",
-        "@types/cookie": "^0.5.1",
-        "@typescript-eslint/eslint-plugin": "^5.60.0",
-        "@typescript-eslint/parser": "^5.60.0",
-        "eslint": "^8.43.0",
-        "eslint-config-prettier": "^8.8.0",
+        "@sveltejs/kit": "^1.25.1",
+        "@sveltejs/package": "^2.2.2",
+        "@types/cookie": "^0.5.2",
+        "@typescript-eslint/eslint-plugin": "^6.7.3",
+        "@typescript-eslint/parser": "^6.7.3",
+        "eslint": "^8.50.0",
+        "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-svelte3": "^4.0.0",
-        "prettier": "^2.8.8",
-        "prettier-plugin-svelte": "^2.10.1",
-        "publint": "^0.1.12",
-        "svelte": "^4.0.0",
-        "svelte-check": "^3.4.4",
-        "tslib": "^2.5.3",
-        "typescript": "^5.1.3",
-        "vite": "^4.3.9",
-        "vitest": "^0.32.2"
+        "prettier": "^3.0.3",
+        "prettier-plugin-svelte": "^3.0.3",
+        "publint": "^0.2.2",
+        "svelte": "^4.2.1",
+        "svelte-check": "^3.5.2",
+        "tslib": "^2.6.2",
+        "typescript": "^5.2.2",
+        "vite": "^4.4.9",
+        "vitest": "^0.34.5"
     },
     "svelte": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@logto/client": "^2.2.0",
-        "@silverhand/essentials": "^2.7.0",
+        "@logto/client": "workspace:^",
+        "@silverhand/essentials": "^2.8.4",
         "cookie": "^0.5.0",
         "js-base64": "^3.7.5"
     },
