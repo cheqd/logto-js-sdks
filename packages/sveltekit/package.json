@@ -1,6 +1,6 @@
 {
     "name": "@cntr/sveltekit",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "scripts": {
         "dev": "vite dev",
@@ -57,7 +57,7 @@
     "types": "./dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@logto/client": "workspace:^",
+        "@logto/client": "workspace:^2.2.2",
         "@silverhand/essentials": "^2.8.4",
         "cookie": "^0.5.0",
         "js-base64": "^3.7.5"

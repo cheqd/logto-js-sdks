@@ -8,9 +8,7 @@ import { CookieStore } from './storage.js';
 
 export type { LogtoConfig, LogtoClientErrorCode, UserInfoResponse } from '@logto/client';
 export { generateCodeVerifier, generateCodeChallenge, generateState };
-
 export { CookieStore } from './storage.js';
-
 export {
     LogtoError,
     OidcError,
@@ -60,9 +58,11 @@ export const LogtoAuthHandler = (
     appId: string,
     endpoint: string,
     scopes?: string[],
-    resources?: string[]
+    resources?: string[],
+    callbackUri = '/logto/callback',
+    afterCallback?: (callbackErr?: unknown) => void
 ): Handle => {
-    return async function ({ event, resolve }) {
+    return async function({ event, resolve }) {
         const client = new LogtoClient(
             {
                 appId,
@@ -73,7 +73,18 @@ export const LogtoAuthHandler = (
             },
             new CookieStore(appId, event.cookies)
         );
-        event.locals.logto = client;
+        event.locals.logto = client
+        if (event.url.pathname === callbackUri) {
+            try {
+                await client.handleSignInCallback(event.url.toString())
+            } catch (err) {
+                event.locals.signInCallbackError = err as Error
+            }
+            if (afterCallback) {
+                afterCallback(event.locals.signInCallbackError)
+            }
+
+        }
 
         return resolve(event);
     };
