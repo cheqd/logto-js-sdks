@@ -6,7 +6,7 @@ import type { CookieSerializeOptions } from 'cookie';
 
 export const logtoStorageItemKeyPrefix = `logto`;
 
-const defaultCookieOptions: CookieSerializeOptions = {
+const defaultCookieOptions: CookieSerializeOptions & { path: string } = {
   path: '/',
   httpOnly: true,
   sameSite: 'lax',
@@ -15,9 +15,9 @@ const defaultCookieOptions: CookieSerializeOptions = {
 export class CookieStore implements Storage<PersistKey> {
   private readonly storageKey: string;
   private readonly cookies: Cookies;
-  private readonly cookieOptions: CookieSerializeOptions;
+  private readonly cookieOptions: CookieSerializeOptions & { path: string };
 
-  constructor(appId: string, cookies: Cookies, cookieOptions?: CookieSerializeOptions) {
+  constructor(appId: string, cookies: Cookies, cookieOptions?: CookieSerializeOptions & { path: string }) {
     this.storageKey = `${logtoStorageItemKeyPrefix}:${appId}`;
     this.cookies = cookies;
     this.cookieOptions = cookieOptions ?? defaultCookieOptions;

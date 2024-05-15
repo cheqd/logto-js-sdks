@@ -2,10 +2,8 @@ import BaseClient, { createRequester } from '@logto/client';
 import type { LogtoConfig } from '@logto/client';
 import { redirect } from '@sveltejs/kit';
 import type { Handle, RequestEvent } from '@sveltejs/kit';
-
 import { generateCodeChallenge, generateCodeVerifier, generateState } from './generators.js';
 import { CookieStore } from './storage.js';
-
 export type { LogtoConfig, LogtoClientErrorCode, UserInfoResponse } from '@logto/client';
 export { generateCodeVerifier, generateCodeChallenge, generateState };
 export { CookieStore } from './storage.js';
@@ -17,10 +15,11 @@ export {
 	LogtoClientError,
 	ReservedScope,
 	UserScope,
+	type IdTokenClaims
 } from '@logto/client';
 
 const navigate = (url: string) => {
-	throw redirect(307, url);
+	redirect(307, url);
 };
 
 export type LogtoSvelteConfig = LogtoConfig & {

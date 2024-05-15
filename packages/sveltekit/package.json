@@ -1,72 +1,73 @@
 {
-    "name": "@cntr/sveltekit",
-    "version": "0.2.0",
-    "license": "MIT",
-    "scripts": {
-        "dev": "vite dev",
-        "build": "vite build && npm run package",
-        "preview": "vite preview",
-        "package": "svelte-kit sync && svelte-package && publint",
-        "prepublishOnly": "npm run package",
-        "test": "playwright test",
-        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-        "test:unit": "vitest",
-        "lint": "prettier --plugin-search-dir . --check . && eslint .",
-        "format": "prettier --plugin-search-dir . --write ."
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/logto-io/js.git",
-        "directory": "packages/browser"
-    },
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "svelte": "./dist/index.js"
-        }
-    },
-    "files": [
-        "dist"
-    ],
-    "peerDependencies": {
-        "svelte": "^4.2.1"
-    },
-    "devDependencies": {
-        "@playwright/test": "^1.38.1",
-        "@sveltejs/adapter-auto": "^2.1.0",
-        "@sveltejs/kit": "^1.25.1",
-        "@sveltejs/package": "^2.2.2",
-        "@types/cookie": "^0.5.2",
-        "@typescript-eslint/eslint-plugin": "^6.7.3",
-        "@typescript-eslint/parser": "^6.7.3",
-        "eslint": "^8.50.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-svelte3": "^4.0.0",
-        "prettier": "^3.0.3",
-        "prettier-plugin-svelte": "^3.0.3",
-        "publint": "^0.2.2",
-        "svelte": "^4.2.1",
-        "svelte-check": "^3.5.2",
-        "tslib": "^2.6.2",
-        "typescript": "^5.2.2",
-        "vite": "^4.4.9",
-        "vitest": "^0.34.5"
-    },
-    "svelte": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "type": "module",
-    "dependencies": {
-        "@logto/client": "workspace:^2.2.2",
-        "@silverhand/essentials": "^2.8.4",
-        "cookie": "^0.5.0",
-        "js-base64": "^3.7.5"
-    },
-    "eslintConfig": {
-        "extends": "@silverhand"
-    },
-    "prettier": "@silverhand/eslint-config/.prettierrc",
-    "publishConfig": {
-        "access": "public"
+  "name": "@cntr/sveltekit",
+  "version": "0.3.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && npm run package",
+    "preview": "vite preview",
+    "package": "svelte-kit sync && svelte-package && publint",
+    "prepublishOnly": "npm run package",
+    "test": "playwright test",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test:unit": "vitest",
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "format": "prettier --plugin-search-dir . --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/logto-io/js.git",
+    "directory": "packages/browser"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "svelte": "^4.2.17"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@sveltejs/adapter-auto": "^3.2.1",
+    "@sveltejs/kit": "^2.5.10",
+    "@sveltejs/package": "^2.3.1",
+    "@sveltejs/vite-plugin-svelte": "^3.1.0",
+    "@types/cookie": "^0.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^9.3.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-svelte": "^2.39.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-svelte": "^3.2.3",
+    "publint": "^0.2.8",
+    "svelte": "^4.2.17",
+    "svelte-check": "^3.7.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
+  },
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "dependencies": {
+    "@logto/client": "^2.6.7",
+    "@silverhand/essentials": "^2.9.1",
+    "cookie": "^0.6.0",
+    "js-base64": "^3.7.7"
+  },
+  "eslintConfig": {
+    "extends": "@silverhand"
+  },
+  "prettier": "@silverhand/eslint-config/.prettierrc",
+  "publishConfig": {
+    "access": "public"
+  }
 }
